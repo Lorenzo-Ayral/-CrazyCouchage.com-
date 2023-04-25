@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CreateAnnonceController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="container text-center mt-3">
+            <h1>Create Annonce</h1>
+
+            {{ form_start(CreateAnnonceForm) }}
+            {{ form_widget(CreateAnnonceForm) }}
+            <button type="submit">Create</button>
+            {{ form_end(CreateAnnonceForm) }}
+        </div>
+    </div>
+{% endblock %}
