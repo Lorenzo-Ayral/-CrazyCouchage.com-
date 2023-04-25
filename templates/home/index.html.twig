@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crazy Voyages !{% endblock %}
+
+{% block body %}
+
+  {% for annonce in annonces %}
+
+    <div class="card text-center">
+        <div class="card-header">
+            Disponible !
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ annonce.name }}</h5>
+            <p class="card-text">{{ annonce.description }}</p>
+            <p>{{annonce.logement.type}}</p>
+            <p>{{annonce.category.label}}</p>
+            <a href="#" class="btn btn-primary">Découvrir</a>
+        </div>
+    </div>
+
+  {% endfor %}
+
+{% endblock %}

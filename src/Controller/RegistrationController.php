@@ -44,6 +44,7 @@ class RegistrationController extends AbstractController
             $user->setPseudo('test');
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setIsVerified(false);
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
