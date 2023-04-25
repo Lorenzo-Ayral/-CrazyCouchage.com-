@@ -33,9 +33,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $user->setIsVerified(true);
-            $user->setCreatedAt(new \DateTimeImmutable());
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -44,20 +41,24 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setPseudo('test');
+            $user->setCreatedAt(new \DateTimeImmutable());
+            $user->setIsVerified(false);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('nico13sanna@gmail.com', 'Administrator'))
+                    ->from(new Address('test@mailhong.local', 'test@mailhong.local'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
