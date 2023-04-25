@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\Logement;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -39,6 +40,13 @@ class AppFixtures extends Fixture
         $logementFour = new Logement();
         $logementFour->setType('Chalet à la montagne');
         $manager->persist($logementFour);
+
+        $addressOne = new Address();
+        $addressOne->setCity('Paris');
+        $addressOne->setCountry('France');
+        $addressOne->setStreet('Champs Élysées');
+        $addressOne->setZip('75000');
+        $manager->persist($addressOne);
 
         $manager->flush();
     }
