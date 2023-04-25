@@ -8,11 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
+    private $tokenStorage;
+
     #[Route('/test', name: 'app_test')]
-    public function index(): Response
+    public function index(TokenStorageInterface $tokenStorage): Response
     {
+        $this->tokenStorage = $tokenStorage;
+        $user = $this->tokenStorage->getToken()->getUser();
+        $id = $user->getId();
+
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
+            'id' => $id,
         ]);
     }
 }

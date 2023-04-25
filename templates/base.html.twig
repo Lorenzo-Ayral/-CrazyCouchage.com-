@@ -17,7 +17,14 @@
 
      {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            <ul>
+                <li>
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_user_show', {'id': app.user.id}) }}">Voir profil</a>
+                </li>
+            </ul>
         </div>
     {% endif %}
     
@@ -30,12 +37,11 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home
-                            <span class="visually-hidden">(current)</span>
+                        <a class="nav-link" href="{{ path ('app_home')}}">Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="{{ path('app_user_show', {'id': app.user.id}) }}">Voir profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
