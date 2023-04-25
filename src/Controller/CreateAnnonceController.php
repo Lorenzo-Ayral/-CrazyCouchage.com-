@@ -37,7 +37,7 @@ class CreateAnnonceController extends AbstractController
     public function handleFormSubmission(Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|Response
     {
         $annonce = new Annonce();
-        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form = $this->createForm(CreateAnnonceType::class, $annonce);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
