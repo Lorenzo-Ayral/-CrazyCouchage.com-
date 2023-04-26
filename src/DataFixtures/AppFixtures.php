@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Address;
 use App\Entity\Category;
 use App\Entity\Logement;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -47,6 +48,15 @@ class AppFixtures extends Fixture
         $addressOne->setStreet('Champs Élysées');
         $addressOne->setZip('75000');
         $manager->persist($addressOne);
+
+        $userAdmin = new User();
+        $userAdmin->setEmail('test@test.com');
+        $userAdmin->setPseudo('Nico13');
+        $userAdmin->setPassword(password_hash('bonjour@123@Bidule', PASSWORD_DEFAULT));
+        $userAdmin->setIsVerified(true);
+        $userAdmin->setRoles(['ROLE_ADMIN']);
+        $userAdmin->setCreatedAt(new \DateTimeImmutable());
+        $manager->persist($userAdmin);
 
         $manager->flush();
     }

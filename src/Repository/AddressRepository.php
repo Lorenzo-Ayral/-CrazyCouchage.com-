@@ -54,6 +54,14 @@ class AddressRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findAllByCity(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.city', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    public function findOneBySomeField($value): ?Address
 //    {
 //        return $this->createQueryBuilder('a')
