@@ -26,6 +26,12 @@ class CreateAnnonceController extends AbstractController
             // $entityManager->persist($annonce);
             // $entityManager->flush();
 
+            $file = $form['image']->getData();
+           // use the original file name
+            $file->move('image_directory', $file->getClientOriginalName());
+    
+
+            $annonce->setImage($file->getClientOriginalName());
             $annonceRepository->save($annonce, true);
 
             // Rediriger vers une page de confirmation ou autre

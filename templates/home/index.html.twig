@@ -12,6 +12,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ annonce.name }}</h5>
+            <img class="img-fluid img-thumbnail" src="{{  asset('image_directory/' ~ annonce.image ~ '')}}" alt="Card image cap">
             <p class="card-text">{{ annonce.description }}</p>
             <p>{{annonce.logement.type}}</p>
             <p>{{annonce.category.label}}</p>
