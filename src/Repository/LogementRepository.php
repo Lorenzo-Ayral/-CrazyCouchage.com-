@@ -39,6 +39,14 @@ class LogementRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllByType(): array
+    {
+        return $this->createQueryBuilder('l')
+            ->orderBy('l.type', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Logement[] Returns an array of Logement objects
 //     */
