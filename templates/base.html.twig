@@ -37,15 +37,20 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path ('app_home')}}">Home
-                        </a>
+                        <a class="nav-link" href="{{ path ('app_home')}}">Home</a>
                     </li>
+                    {% if app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_user_show', {'id': app.user.id}) }}">Voir profil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                    <li>
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path ('app_login')}}">Login</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
