@@ -1,0 +1,50 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('app_home') }}">Crazy Couchages !</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_home') }}">Accueil
+                        </a>
+                    </li>
+                    {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Bienvenue {{app.user.pseudo}}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Mon compte
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_login')}}">Se connecter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"  href="{{ path('app_register') }}">S'inscrire</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thématique</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Annonces</a>
+                            <a class="dropdown-item" href="{{ path('app_category_index')}}">Catégories</a>
+                            <a class="dropdown-item" href="{{ path('app_logement_index')}}">Logements</a>
+                            <a class="dropdown-item" href="{{ path('app_address_index')}}">Adresses</a>
+                        </div>
+                    </li>
+                </ul>
+                {# <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form> #}
+            </div>
+        </div>
+    </nav>

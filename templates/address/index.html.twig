@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adresses{% endblock %}
+
+{% block body %}
+    <h1>Adresses</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ville</th>
+                <th>Rue</th>
+                <th>Pays</th>
+                <th>Code postal</th>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for address in addresses %}
+            <tr>
+                <td>{{ address.city }}</td>
+                <td>{{ address.street }}</td>
+                <td>{{ address.country }}</td>
+                <td>{{ address.zip }}</td>
+                <td>{{ address.id }}</td>
+                <td>
+                    <a href="{{ path('app_address_show', {'id': address.id}) }}">Voir</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
+                        
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <a href="{{ path('app_address_new') }}">Créer une nouvelle adresse</a>
+
+    {% endif %}
+
+{% endblock %}
