@@ -38,10 +38,6 @@ class CreateAnnonceType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'label',
             ])
-           ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-            ])
             ->add('address', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Create Annonce'])
         ;
