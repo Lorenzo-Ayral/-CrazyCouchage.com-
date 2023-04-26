@@ -26,7 +26,13 @@
                 <td>{{ address.id }}</td>
                 <td>
                     <a href="{{ path('app_address_show', {'id': address.id}) }}">Voir</a>
-                    <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
+                        
+                    {% endif %}
+
                 </td>
             </tr>
         {% else %}
@@ -37,5 +43,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_address_new') }}">Créer une nouvelle adresse</a>
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <a href="{{ path('app_address_new') }}">Créer une nouvelle adresse</a>
+
+    {% endif %}
+
 {% endblock %}

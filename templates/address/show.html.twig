@@ -32,7 +32,12 @@
 
     <a href="{{ path('app_address_index') }}">Revenir à la liste</a>
 
-    <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
+    {% if is_granted('ROLE_ADMIN') %}
 
-    {{ include('address/_delete_form.html.twig') }}
+        <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
+
+        {{ include('address/_delete_form.html.twig') }}
+
+    {% endif %}
+    
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block body %}
     <h1>Catégories</h1>
@@ -20,7 +20,13 @@
                 <td>{{ category.id }}</td>
                 <td>
                     <a href="{{ path('app_category_show', {'id': category.id}) }}">Voir</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <a href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+                        
+                    {% endif %}
+
                 </td>
             </tr>
         {% else %}
