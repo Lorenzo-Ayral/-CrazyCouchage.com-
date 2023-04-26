@@ -8,11 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Form\CreateAnnonceType;
+use App\Repository\AnnonceRepository;
 
 class CreateAnnonceController extends AbstractController
 {
-    #[Route('/create-annonce', name: 'app_create_annonce')]
-    public function createAnnonce(Request $request): Response
+    #[Route('/admin/creer-annonce', name: 'app_create_annonce')]
+    public function createAnnonce(Request $request, AnnonceRepository $annonceRepository): Response
     {
         $annonce = new Annonce();
         $annonce->setUser($this->getUser());
@@ -21,12 +22,14 @@ class CreateAnnonceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Enregistrer la nouvelle annonce dans la base de données
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($annonce);
+            // $entityManager->flush();
+
+            $annonceRepository->save($annonce, true);
 
             // Rediriger vers une page de confirmation ou autre
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('create_annonce/index.html.twig', [

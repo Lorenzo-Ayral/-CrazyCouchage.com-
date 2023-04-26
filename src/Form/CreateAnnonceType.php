@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Address;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -14,32 +15,49 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Annonce;
-use App\Entity\User; // Ajouter cette ligne pour importer l'entité User
+use App\Entity\Logement;
 
 class CreateAnnonceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Nom de l\'annonce'
+            ])
             ->add('description', TextareaType::class)
-            ->add('price', IntegerType::class)
+            ->add('price', IntegerType::class, [
+                'label' => 'Prix'
+            ])
             ->add('startAt', DateType::class, [
-                'label' => 'Start Date',
+                'label' => 'Date de début',
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable'
             ])
             ->add('endAt', DateType::class, [
-                'label' => 'End Date',
+                'label' => 'Date de fin',
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable'
             ])
-            ->add('is_available', CheckboxType::class)
-            ->add('logement', TextType::class)
+            ->add('is_available', CheckboxType::class, [
+                'attr' => ['class' => 'form-check-input'],
+                'label' => 'Disponible ?'
+            ])
+            ->add('logement', EntityType::class, [
+                'class' => Logement::class,
+                'label' => 'Type de logement',
+                'choice_label' => 'type'
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'label',
+                'label' => 'Catégorie'
             ])
-            ->add('address', TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Annonce'])
+            ->add('address', AddressType::class, [
+                'mapped' => true,
+                'label' => 'Adresse'
+            ])
+            ->add('save', SubmitType::class, ['label' => 'Créer une annonce'])
         ;
     }
 

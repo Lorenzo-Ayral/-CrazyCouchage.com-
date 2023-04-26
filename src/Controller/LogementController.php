@@ -17,7 +17,7 @@ class LogementController extends AbstractController
     public function index(LogementRepository $logementRepository): Response
     {
         return $this->render('logement/index.html.twig', [
-            'logements' => $logementRepository->findAll(),
+            'logements' => $logementRepository->findAllByType(),
         ]);
     }
 

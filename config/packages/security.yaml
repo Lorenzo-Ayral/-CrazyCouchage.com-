@@ -34,6 +34,8 @@ security:
         - { path: ^/categorie/admin, roles: ROLE_ADMIN }
         - { path: ^/logement/admin, roles: ROLE_ADMIN }
         - { path: ^/addresse/admin, roles: ROLE_ADMIN }
+        - { path: /admin/creer-annonce, roles: [ROLE_USER, ROLE_ADMIN]}
+        - { path: /user/admin, roles:[ROLE_USER, ROLE_ADMIN]}
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
