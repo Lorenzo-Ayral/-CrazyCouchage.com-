@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Address index{% endblock %}
+{% block title %}Adresses{% endblock %}
 
 {% block body %}
-    <h1>Address index</h1>
+    <h1>Adresses</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>City</th>
-                <th>Street</th>
-                <th>Country</th>
-                <th>Zip</th>
+                <th>Ville</th>
+                <th>Rue</th>
+                <th>Pays</th>
+                <th>Code postal</th>
                 <th>Id</th>
                 <th>actions</th>
             </tr>
@@ -25,17 +25,17 @@
                 <td>{{ address.zip }}</td>
                 <td>{{ address.id }}</td>
                 <td>
-                    <a href="{{ path('app_address_show', {'id': address.id}) }}">show</a>
-                    <a href="{{ path('app_address_edit', {'id': address.id}) }}">edit</a>
+                    <a href="{{ path('app_address_show', {'id': address.id}) }}">Voir</a>
+                    <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun enregistrement</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_address_new') }}">Create new</a>
+    <a href="{{ path('app_address_new') }}">Créer une nouvelle adresse</a>
 {% endblock %}

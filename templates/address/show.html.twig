@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Address{% endblock %}
+{% block title %}Adresse{% endblock %}
 
 {% block body %}
-    <h1>Address</h1>
+    <h1>Adresse</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ address.city }}</td>
             </tr>
             <tr>
-                <th>Street</th>
+                <th>Rue</th>
                 <td>{{ address.street }}</td>
             </tr>
             <tr>
-                <th>Country</th>
+                <th>Pays</th>
                 <td>{{ address.country }}</td>
             </tr>
             <tr>
-                <th>Zip</th>
+                <th>Code postal</th>
                 <td>{{ address.zip }}</td>
             </tr>
             <tr>
@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_address_index') }}">back to list</a>
+    <a href="{{ path('app_address_index') }}">Revenir à la liste</a>
 
-    <a href="{{ path('app_address_edit', {'id': address.id}) }}">edit</a>
+    <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier</a>
 
     {{ include('address/_delete_form.html.twig') }}
 {% endblock %}

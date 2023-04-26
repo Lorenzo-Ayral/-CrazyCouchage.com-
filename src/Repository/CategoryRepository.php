@@ -54,6 +54,14 @@ class CategoryRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    public function findAllOrderByLabel(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.label', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    public function findOneBySomeField($value): ?Category
 //    {
 //        return $this->createQueryBuilder('c')

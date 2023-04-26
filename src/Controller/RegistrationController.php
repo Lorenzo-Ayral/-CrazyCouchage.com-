@@ -40,8 +40,6 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
-            $user->setPseudo('test');
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setIsVerified(false);
             $user->setRoles(['ROLE_USER']);
