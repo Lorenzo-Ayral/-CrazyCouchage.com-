@@ -38,7 +38,7 @@ class Annonce extends BaseEntity
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    #[ORM\ManyToOne(inversedBy: 'annonces', cascade:['persist', 'remove'])]
     private ?Address $address = null;
 
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Comment::class)]
