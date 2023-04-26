@@ -44,6 +44,23 @@ class Annonce extends BaseEntity
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    private ?string $imageFile = null;
+
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?string $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -195,6 +212,18 @@ class Annonce extends BaseEntity
                 $comment->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

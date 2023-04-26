@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,6 +23,12 @@ class CreateAnnonceType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('imageFile', FileType::class, [
+                'label' => 'Image', // Étiquette du champ
+                'required' => false, // Indique si le champ est obligatoire ou non
+                'attr' => ['accept' => 'image/*'], // Filtre les fichiers pour n'accepter que les images
+                // Autres options supplémentaires selon vos besoins
+            ])
             ->add('description', TextareaType::class)
             ->add('price', IntegerType::class)
             ->add('startAt', DateType::class, [
@@ -32,7 +39,12 @@ class CreateAnnonceType extends AbstractType
                 'label' => 'End Date',
                 'widget' => 'single_text',
             ])
-            ->add('is_available', CheckboxType::class)
+            ->add('is_available', CheckboxType::class, [
+                'label' => 'Disponible', // Étiquette de la case à cocher
+                'required' => false, // Indique si la case à cocher est obligatoire ou non
+                'attr' => ['class' => 'custom-class'], // Attributs HTML supplémentaires pour la case à cocher
+                // Autres options supplémentaires selon vos besoins
+            ])
             ->add('logement', TextType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,

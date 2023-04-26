@@ -10,6 +10,8 @@
             {{ form_start(CreateAnnonceForm) }}
             {{ form_label(CreateAnnonceForm.name) }}
             {{ form_widget(CreateAnnonceForm.name, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;', 'placeholder': 'Jean-Louis'}}) }}
+            {{ form_label(CreateAnnonceForm.imageFile) }}
+            {{ form_widget(CreateAnnonceForm.imageFile, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
             {{ form_label(CreateAnnonceForm.description) }}
             {{ form_widget(CreateAnnonceForm.description, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;', 'placeholder': 'Magnifique château sur pilotis'}}) }}
             {{ form_label(CreateAnnonceForm.price) }}
