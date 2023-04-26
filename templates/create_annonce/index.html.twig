@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CreateAnnonceController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="container text-center mt-3 w-50">
+            <h1 class="mb-3">Publier votre annonce</h1>
+
+            {{ form_start(CreateAnnonceForm) }}
+            {{ form_label(CreateAnnonceForm.name) }}
+            {{ form_widget(CreateAnnonceForm.name, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;', 'placeholder': 'Jean-Louis'}}) }}
+            {{ form_label(CreateAnnonceForm.description) }}
+            {{ form_widget(CreateAnnonceForm.description, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;', 'placeholder': 'Magnifique château sur pilotis'}}) }}
+            {{ form_label(CreateAnnonceForm.price) }}
+            {{ form_widget(CreateAnnonceForm.price, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;', 'placeholder': '1 000 000 €'}}) }}
+            {{ form_label(CreateAnnonceForm.startAt, 'Start Date') }}
+            {{ form_widget(CreateAnnonceForm.startAt, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_label(CreateAnnonceForm.endAt, 'End Date') }}
+            {{ form_widget(CreateAnnonceForm.endAt, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_label(CreateAnnonceForm.is_available) }}
+            {{ form_widget(CreateAnnonceForm.is_available, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_label(CreateAnnonceForm.logement) }}
+            {{ form_widget(CreateAnnonceForm.logement, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_label(CreateAnnonceForm.category) }}
+            {{ form_widget(CreateAnnonceForm.category, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_label(CreateAnnonceForm.address) }}
+            {{ form_widget(CreateAnnonceForm.address, {'attr': {'class': 'form-control', 'style': 'margin-bottom: 40px;'}}) }}
+            {{ form_widget(CreateAnnonceForm.save, {'label': 'Create Annonce', 'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_end(CreateAnnonceForm) }}
+
+        </div>
+    </div>
+{% endblock %}
