@@ -14,7 +14,6 @@ class HomeController extends AbstractController
     {
         $annonces = $annonceRepository->findBy(['is_available' => true]);
 
-        // dd($annonces);
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces
         ]);

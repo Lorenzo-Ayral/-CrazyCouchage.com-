@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnonceController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <div class="card-body">
+        <h3 class="card-title">{{ annonce.name }}</h3>
+        <img class="img-fluid img-thumbnail" src="{{  asset('image_directory/' ~ annonce.image ~ '')}}" alt="Card image cap">
+        <p class="card-text">{{ annonce.description }}</p>
+        <h4 class="card-title">Type de logement</h4>
+        <p class="card-text">{{annonce.logement.type}}</p>
+        <h4 class="card-title">Catégorie</h4>
+        <p class="card-text">{{annonce.category.label}}</p>
+        {% if app.user %}
+        <a href="{{path('app_reservation_new', {'id': annonce.id})}}" data-toggle="modal" class="btn btn-primary">Réserver</a>
+        {% else %}
+        <a href="{{path('app_login')}}" class="btn btn-primary">Se connecter pour réserver</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
