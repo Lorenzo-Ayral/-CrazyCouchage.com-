@@ -26,7 +26,12 @@ class CreateAnnonceController extends AbstractController
             $registerFile = new RegisterImage($form);
             $fileName = $registerFile->saveImage();
 
-            $annonce->setImage($fileName);
+            $file = $form['image']->getData();
+           // use the original file name
+            $file->move('image_directory', $file->getClientOriginalName());
+    
+
+            $annonce->setImage($file->getClientOriginalName());
             $annonceRepository->save($annonce, true);
 
             // Rediriger vers une page de confirmation ou autre

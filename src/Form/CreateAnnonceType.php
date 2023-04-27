@@ -26,6 +26,8 @@ class CreateAnnonceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom de l\'annonce'])
             ->add('image', FileType::class, [
+                'label' => 'Nom de l\'annonce'])
+            ->add('image', FileType::class, [
                 'label' => 'Image', // Étiquette du champ
                 'required' => false, // Indique si le champ est obligatoire ou non
                 'attr' => ['accept' => 'image/*'], // Filtre les fichiers pour n'accepter que les images
@@ -53,12 +55,6 @@ class CreateAnnonceType extends AbstractType
                 'class' => Logement::class,
                 'label' => 'Type de logement',
                 'choice_label' => 'type'
-            ])
-            ->add('is_available', CheckboxType::class, [
-                'label' => 'Disponible', // Étiquette de la case à cocher
-                'required' => false, // Indique si la case à cocher est obligatoire ou non
-                'attr' => ['class' => 'custom-class'], // Attributs HTML supplémentaires pour la case à cocher
-                // Autres options supplémentaires selon vos besoins
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
