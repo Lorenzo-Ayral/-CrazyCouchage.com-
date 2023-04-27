@@ -3,7 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Mon profil</h1>
 
     <table class="table">
         <tbody>
@@ -12,33 +12,17 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
                 <th>Pseudo</th>
                 <td>{{ user.pseudo }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créé le</th>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">edit</a>
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier mon profil</a>
 
 {#    si l'user connecté n'est pas admin alors on n'affiche pas #}
     {% for role in user.roles %}
@@ -48,5 +32,21 @@
         {% endif %}
     {% endfor %}
 {#    __________________________________________________________#}
+
+    <h1>Mes réservations</h1>
+
+    {% for reservation in reservations %}
+
+        <div class="card-body">
+            <h3 class="card-title">{{ reservation.annonce.name }}</h3>
+            <img class="img-fluid img-thumbnail" src="{{  asset('image_directory/' ~ reservation.annonce.image ~ '')}}" alt="Card image cap">
+            <p class="card-text">{{ reservation.annonce.description }}</p>
+            <h4 class="card-title">Type de logement</h4>
+            <p class="card-text">{{reservation.annonce.logement.type}}</p>
+            <h4 class="card-title">Catégorie</h4>
+            <p class="card-text">{{reservation.annonce.category.label}}</p>
+            <a href="{{ path('app_annonce') }}" class="btn btn-primary">Découvrir</a>
+        </div>
+    {% endfor %}
 
 {% endblock %}
