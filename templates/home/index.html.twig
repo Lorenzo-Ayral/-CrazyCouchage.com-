@@ -2,23 +2,29 @@
 
 {% block title %}Crazy Couchages !{% endblock %}
 
+
 {% block body %}
+    <div class="row d-flex align-items-center justify-content-center">
+        <h1 class="text-center mt-2 mb-4">Découvrez les annonces les plus craaazy du moment !</h1>
 
   {% for annonce in annonces %}
 
-    <div class="card text-center">
+    <div class="card text-center m-2" style="max-width: 35rem;">
         <div class="card-header">
-            Disponible !
+            <h2>Disponible !</h2>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ annonce.name }}</h5>
+            <h3 class="card-title">{{ annonce.name }}</h3>
+            <img class="img-fluid img-thumbnail" src="{{  asset('image_directory/' ~ annonce.image ~ '')}}" alt="Card image cap">
             <p class="card-text">{{ annonce.description }}</p>
-            <p>{{annonce.logement.type}}</p>
-            <p>{{annonce.category.label}}</p>
+            <h4 class="card-title">Type de logement</h4>
+            <p class="card-text">{{annonce.logement.type}}</p>
+            <h4 class="card-title">Catégorie</h4>
+            <p class="card-text">{{annonce.category.label}}</p>
             <a href="#" class="btn btn-primary">Découvrir</a>
         </div>
     </div>
 
   {% endfor %}
-
+    </div>
 {% endblock %}
