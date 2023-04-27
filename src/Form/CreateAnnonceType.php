@@ -26,8 +26,6 @@ class CreateAnnonceType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom de l\'annonce'])
             ->add('image', FileType::class, [
-                'label' => 'Nom de l\'annonce'])
-            ->add('image', FileType::class, [
                 'label' => 'Image', // Étiquette du champ
                 'required' => false, // Indique si le champ est obligatoire ou non
                 'attr' => ['accept' => 'image/*'], // Filtre les fichiers pour n'accepter que les images
