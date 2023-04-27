@@ -13,7 +13,7 @@ class Category extends BaseEntity
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Annonce::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Annonce::class, cascade:['remove', 'persist'])]
     private Collection $annonces;
 
     public function __construct()

@@ -13,7 +13,7 @@ class Logement extends BaseEntity
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\OneToMany(mappedBy: 'logement', targetEntity: Annonce::class)]
+    #[ORM\OneToMany(mappedBy: 'logement', targetEntity: Annonce::class, cascade:['remove', 'persist'])]
     private Collection $annonces;
 
     public function __construct()

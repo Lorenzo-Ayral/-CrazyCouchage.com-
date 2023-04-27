@@ -25,7 +25,7 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/creer/{id}', name: 'app_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Annonce $annonce, ReservationRepository $reservationRepository, MailerInterface $mailer): Response
     {
         $reservation = new Reservation();
@@ -62,7 +62,7 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/{id}/editer', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
     {
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -80,7 +80,7 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
+    #[Route('/admin/{id}/supprimer', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, ReservationRepository $reservationRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {

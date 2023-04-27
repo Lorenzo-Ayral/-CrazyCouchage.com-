@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Repository\AnnonceRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,8 +69,19 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/admin/{id}', name: 'app_category_delete', methods: ['POST'])]
-    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository, AnnonceRepository $annonceRepository, ReservationRepository $reservationRepository): Response
     {
+
+        $annonces = $annonceRepository->findBy(['category' => $category->getId()]);
+
+        foreach ($annonces as $annonce)
+        {
+            $reservation = $reservationRepository->findOneBy(['annonce' => $annonce]);
+            $reservationRepository->remove($reservation, true);
+            $annonceRepository->remove($annonce, true);
+        }
+
+
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
             $categoryRepository->remove($category, true);
         }
