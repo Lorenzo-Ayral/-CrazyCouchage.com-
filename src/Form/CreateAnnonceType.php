@@ -31,7 +31,7 @@ class CreateAnnonceType extends AbstractType
                 'attr' => ['accept' => 'image/*'], // Filtre les fichiers pour n'accepter que les images
                 // Autres options supplémentaires selon vos besoins
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextType::class)
             ->add('price', IntegerType::class, [
                 'label' => 'Prix'
             ])

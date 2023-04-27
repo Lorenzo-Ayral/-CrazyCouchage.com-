@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Annonce;
 use App\Form\CreateAnnonceType;
 use App\Repository\AnnonceRepository;
+use App\Service\RegisterImage;
 
 class CreateAnnonceController extends AbstractController
 {
@@ -21,10 +22,9 @@ class CreateAnnonceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Enregistrer la nouvelle annonce dans la base de données
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($annonce);
-            // $entityManager->flush();
+
+            $registerFile = new RegisterImage($form);
+            $fileName = $registerFile->saveImage();
 
             $file = $form['image']->getData();
            // use the original file name
@@ -36,27 +36,6 @@ class CreateAnnonceController extends AbstractController
 
             // Rediriger vers une page de confirmation ou autre
             return $this->redirectToRoute('app_home');
-        }
-
-        return $this->render('create_annonce/index.html.twig', [
-            'CreateAnnonceForm' => $form->createView(),
-        ]);
-    }
-
-    public function handleFormSubmission(Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|Response
-    {
-        $annonce = new Annonce();
-        $form = $this->createForm(CreateAnnonceType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Enregistrer la nouvelle annonce dans la base de données
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
-
-            // Rediriger vers une page de confirmation ou autre
-            return $this->redirectToRoute('app_create_annonce');
         }
 
         return $this->render('create_annonce/index.html.twig', [
