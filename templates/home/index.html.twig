@@ -6,7 +6,6 @@
 {% block body %}
     <div class="row d-flex align-items-center justify-content-center">
         <h1 class="text-center mt-2 mb-4">Découvrez les annonces les plus craaazy du moment !</h1>
-
   {% for annonce in annonces %}
 
     <div class="card text-center m-2" style="max-width: 35rem;">
@@ -21,10 +20,15 @@
             <p class="card-text">{{annonce.logement.type}}</p>
             <h4 class="card-title">Catégorie</h4>
             <p class="card-text">{{annonce.category.label}}</p>
-            <a href="#" class="btn btn-primary">Découvrir</a>
+            <a href="{{ path('app_annonce', {'id': annonce.id}) }}" class="btn btn-primary">Découvrir</a>
         </div>
     </div>
 
   {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
